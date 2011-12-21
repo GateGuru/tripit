@@ -69,7 +69,7 @@ module TripIt
     end
     
     def subscribe_trips
-      @client.subscribe("/trip")
+      @client.subscribe("trip")
     end
     
     def unsubscribe

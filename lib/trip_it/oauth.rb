@@ -60,7 +60,7 @@ module TripIt
     end
     
     def subscribe(resource)
-      request = access_token.get("/v1/subscribe/type#{resource}")
+      request = access_token.get("/v1/subscribe?type=#{resource}")
       returnResponse(request)
     end
     
