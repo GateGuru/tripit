@@ -37,15 +37,14 @@ module TripIt
       serialized_param_str = params.keys.sort.inject('') do |str, key| str += "#{key}:#{params[key]}::" end
       return @tripCache[serialized_param_str] unless @tripCache[serialized_param_str].nil?
       tripArr = []
-      listResponse = @client.list("/trip", params)
-      tripList = listResponse["Trip"]
+      tripList = @client.list("/trip", params)["Trip"]
       unless tripList.nil?
         if tripList.is_a?(Array)
           tripList.each do |trip|
-            tripArr << TripIt::Trip.new(@client,trip['id'],params[:include_objects],params[:include_objects] ? listResponse : nil)
+            tripArr << TripIt::Trip.new(@client,trip['id'],params[:include_objects])
           end
         else
-          tripArr << TripIt::Trip.new(@client,tripList['id'],params[:include_objects],params[:include_objects] ? listResponse : nil)
+          tripArr << TripIt::Trip.new(@client,tripList['id'],params[:include_objects])
         end
       end
       @tripCache[serialized_param_str] = tripArr
