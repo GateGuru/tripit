@@ -64,8 +64,8 @@ module TripIt
       returnResponse(request, "xml")
     end
     
-    def unsubscribe
-      request = access_token.get("/v1/unsubscribe")
+    def unsubscribe(resource)
+      request = access_token.get("/v1/unsubscribe?type=#{resource}")
       returnResponse(request, "xml")
     end
     

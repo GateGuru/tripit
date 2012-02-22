@@ -72,8 +72,8 @@ module TripIt
       @client.subscribe("trip")
     end
     
-    def unsubscribe
-      @client.unsubscribe
+    def unsubscribe_trips
+      @client.unsubscribe("trip")
     end
   end
 end
