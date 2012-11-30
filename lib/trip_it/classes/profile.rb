@@ -40,11 +40,11 @@ module TripIt
       tripList = @client.list("/trip", params)["Trip"]
       unless tripList.nil?
         if tripList.is_a?(Array)
-          tripList.each do |trip|
-            tripArr << TripIt::Trip.new(@client,trip['id'],params[:include_objects])
+          tripList.each do |trip|            
+            tripArr << TripIt::Trip.new(@client,trip['id'],params[:include_objects], {'Trip' => trip})
           end
         else
-          tripArr << TripIt::Trip.new(@client,tripList['id'],params[:include_objects])
+          tripArr << TripIt::Trip.new(@client,tripList['id'],params[:include_objects], {'Trip' => tripList})
         end
       end
       @tripCache[serialized_param_str] = tripArr
