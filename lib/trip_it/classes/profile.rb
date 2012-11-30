@@ -7,7 +7,8 @@ module TripIt
     def initialize(client, source = nil)
       @client = client
       @tripCache ||= {}
-      populate(source)
+      # Optimization: Don't load the profile if source is false
+      populate(source) unless source == false
     end
     
     def populate(source)
